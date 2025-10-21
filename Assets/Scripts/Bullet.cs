@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     public void Initialize(Vector2 velocity, string allyTag, float damage, bool pierce)
     {
         _rigidbody.linearVelocity = velocity;
+        transform.up = velocity.normalized;
         
         _allyTag = allyTag;
         
@@ -19,11 +20,11 @@ public class Bullet : MonoBehaviour
         _pierce = pierce;
     }
     
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        if (!other.gameObject.CompareTag(_allyTag))
+        if (!otherCollider.gameObject.CompareTag(_allyTag))
             return;
-        if (!other.gameObject.TryGetComponent(out Entity entity))
+        if (!otherCollider.gameObject.TryGetComponent(out Entity entity))
             return;
         
         entity.TakeDamage(_damage);

@@ -27,7 +27,7 @@ public class Shooter : MonoBehaviour
         
         var bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
         
-        Vector2 velocity = transform.forward * _bulletSpeed;
+        Vector2 velocity = transform.up * _bulletSpeed;
         bullet.Initialize(velocity, tag, _damage, _piercingBullets);
     }
 }
