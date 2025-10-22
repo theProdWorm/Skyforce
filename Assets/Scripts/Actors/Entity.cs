@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class Entity : MonoBehaviour
 {
-    public UnityEvent<float> OnHealthChanged;
-    public UnityEvent<Entity> OnDeath;
+    public UnityEvent<float> HealthChanged;
+    public UnityEvent<Entity> Died;
     
     [SerializeField] private float _maxHealth = 1f;
 
@@ -21,10 +21,10 @@ public class Entity : MonoBehaviour
     {
         _currentHealth -= damage;
         
-        OnHealthChanged?.Invoke(_currentHealth);
+        HealthChanged?.Invoke(_currentHealth);
         
         if (_currentHealth <= 0)
-            OnDeath?.Invoke(this);
+            Died?.Invoke(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

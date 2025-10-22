@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody;
     

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -9,6 +10,11 @@ public class SplineFollower : MonoBehaviour
 
     private float _timeToReach;
     private float _elapsedTime;
+
+    public void Initialize(SplineContainer path)
+    {
+        _path = path;
+    }
     
     private void Start()
     {
@@ -19,7 +25,10 @@ public class SplineFollower : MonoBehaviour
     
     private void Update()
     {
-        float t = _elapsedTime / _timeToReach;
+        _elapsedTime += Time.deltaTime;
+        
+        float t = Mathf.Clamp01(_elapsedTime / _timeToReach);
         transform.localPosition = _path.EvaluatePosition(t);
+        transform.right = -_path.EvaluateTangent(t);
     }
 }

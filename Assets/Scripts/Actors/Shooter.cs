@@ -9,7 +9,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private bool _piercingBullets;
     
-    protected bool _shooting;
+    private bool _shooting;
 
     private float _timer;
     
@@ -30,4 +30,6 @@ public class Shooter : MonoBehaviour
         Vector2 velocity = transform.up * _bulletSpeed;
         bullet.Initialize(velocity, tag, _damage, _piercingBullets);
     }
+
+    public void SetShootingStatus(bool shooting) => _shooting = shooting;
 }

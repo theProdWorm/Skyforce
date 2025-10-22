@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventTrigger : MonoBehaviour
+public class TriggerEventTrigger : MonoBehaviour
 {
     public UnityEvent<GameObject> OnTriggerEnter;
     public UnityEvent<GameObject> OnTriggerExit;
