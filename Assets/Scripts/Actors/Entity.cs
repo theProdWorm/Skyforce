@@ -6,7 +6,8 @@ namespace Actors
     public class Entity : MonoBehaviour
     {
         public UnityEvent<float> HealthChanged;
-        public UnityEvent<GameObject> Died;
+        public UnityEvent<GameObject> DiedFromDamage;
+        public UnityEvent<GameObject> Destroyed;
     
         [SerializeField] private float _maxHealth = 1f;
 
@@ -24,9 +25,12 @@ namespace Actors
             _currentHealth -= damage;
         
             HealthChanged?.Invoke(_currentHealth);
-        
-            if (_currentHealth <= 0)
-                Died?.Invoke(gameObject);
+
+            if (_currentHealth > 0)
+                return;
+            
+            DiedFromDamage?.Invoke(gameObject);
+            Destroyed?.Invoke(gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -38,6 +42,11 @@ namespace Actors
                 return;
         
             entity.TakeDamage(_contactDamage);
+        }
+        
+        private void OnDestroy()
+        {
+            Destroyed?.Invoke(gameObject);
         }
     }
 }
