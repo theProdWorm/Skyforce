@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+namespace Actors
 {
-    [SerializeField] private Rigidbody2D _rigidbody;
-    
-    [SerializeField] private float _movementSpeed;
-
-    public void OnMove(InputAction.CallbackContext context)
+    public class PlayerMovement : MonoBehaviour
     {
-        _rigidbody.linearVelocity = _movementSpeed * context.ReadValue<Vector2>();
+        [SerializeField] private Rigidbody2D _rigidbody;
+    
+        [SerializeField] private float _movementSpeed;
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            _rigidbody.linearVelocity = _movementSpeed * context.ReadValue<Vector2>();
+        }
     }
 }

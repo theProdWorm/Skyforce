@@ -2,16 +2,19 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class HoldInputListener : MonoBehaviour
+namespace Helpers
 {
-    public UnityEvent InputStarted;
-    public UnityEvent InputEnded;
-    
-    public void OnInput(InputAction.CallbackContext context)
+    public class HoldInputListener : MonoBehaviour
     {
-        if (context.started)
-            InputStarted?.Invoke();
-        else if (context.canceled)
-            InputEnded?.Invoke();
+        public UnityEvent InputStarted;
+        public UnityEvent InputEnded;
+    
+        public void OnInput(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                InputStarted?.Invoke();
+            else if (context.canceled)
+                InputEnded?.Invoke();
+        }
     }
 }

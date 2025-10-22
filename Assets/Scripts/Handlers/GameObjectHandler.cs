@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class GameObjectHandler : MonoBehaviour
+namespace Handlers
 {
-    public void DestroyGameObject(GameObject obj) => Destroy(obj);
+    public class GameObjectHandler : MonoBehaviour
+    {
+        public void DestroyGameObject(GameObject obj) => Destroy(obj);
+    }
 }
