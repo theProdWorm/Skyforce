@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,13 +6,26 @@ namespace Helpers
 {
     public class TriggerEventTrigger : MonoBehaviour
     {
-        public UnityEvent<GameObject> OnTriggerEnter;
-        public UnityEvent<GameObject> OnTriggerExit;
+        [SerializeField] public UnityEvent<GameObject> TriggerEntered;
+        [SerializeField] public UnityEvent<GameObject> TriggerExited;
 
-        private void OnTriggerEnter2D(Collider2D otherCollider) =>
-            OnTriggerEnter?.Invoke(otherCollider.gameObject);
+        [Tooltip("If empty, all tags are allowed")]
+        [SerializeField] private List<string> _allowedTags;
 
-        private void OnTriggerExit2D(Collider2D otherCollider) =>
-            OnTriggerExit?.Invoke(otherCollider.gameObject);
+        private void OnTriggerEnter2D(Collider2D otherCollider)
+        {
+            if (_allowedTags.Count > 0 && !_allowedTags.Contains(otherCollider.gameObject.tag))
+                return;
+                
+            TriggerEntered?.Invoke(otherCollider.gameObject);
+        }
+
+        private void OnTriggerExit2D(Collider2D otherCollider)
+        {
+            if (_allowedTags.Count > 0 && !_allowedTags.Contains(otherCollider.gameObject.tag))
+                return;
+            
+            TriggerExited?.Invoke(otherCollider.gameObject);
+        }
     }
 }

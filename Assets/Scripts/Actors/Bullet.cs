@@ -6,8 +6,6 @@ namespace Actors
     {
         [SerializeField] private Rigidbody2D _rigidbody;
     
-        private string _allyTag;
-    
         private float _damage;
         private bool _pierce;
 
@@ -16,7 +14,7 @@ namespace Actors
             _rigidbody.linearVelocity = velocity;
             transform.up = velocity.normalized;
         
-            _allyTag = allyTag;
+            tag = allyTag;
         
             _damage = damage;
             _pierce = pierce;
@@ -24,8 +22,9 @@ namespace Actors
     
         private void OnTriggerEnter2D(Collider2D otherCollider)
         {
-            if (!otherCollider.gameObject.CompareTag(_allyTag))
+            if (otherCollider.gameObject.CompareTag(tag))
                 return;
+            
             if (!otherCollider.gameObject.TryGetComponent(out Entity entity))
                 return;
         

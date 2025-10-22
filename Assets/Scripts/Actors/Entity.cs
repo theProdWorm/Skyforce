@@ -6,7 +6,7 @@ namespace Actors
     public class Entity : MonoBehaviour
     {
         public UnityEvent<float> HealthChanged;
-        public UnityEvent<Entity> Died;
+        public UnityEvent<GameObject> Died;
     
         [SerializeField] private float _maxHealth = 1f;
 
@@ -26,11 +26,14 @@ namespace Actors
             HealthChanged?.Invoke(_currentHealth);
         
             if (_currentHealth <= 0)
-                Died?.Invoke(this);
+                Died?.Invoke(gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision.gameObject.CompareTag(tag))
+                return;
+            
             if (!collision.gameObject.TryGetComponent(out Entity entity))
                 return;
         
