@@ -5,7 +5,7 @@ namespace Actors
 {
     public class Entity : MonoBehaviour
     {
-        public UnityEvent<float> HealthChanged;
+        public UnityEvent<float> DamageTaken;
         public UnityEvent<GameObject> DiedFromDamage;
         public UnityEvent<GameObject> Destroyed;
     
@@ -15,16 +15,23 @@ namespace Actors
     
         private float _currentHealth;
 
+        private bool _destroyed;
+
         private void Awake()
         {
             _currentHealth = _maxHealth;
+            
+            Destroyed.AddListener(_ => _destroyed = true);
         }
 
         public void TakeDamage(float damage)
         {
+            if (damage <= 0)
+                return;
+            
             _currentHealth -= damage;
         
-            HealthChanged?.Invoke(_currentHealth);
+            DamageTaken?.Invoke(_currentHealth);
 
             if (_currentHealth > 0)
                 return;
@@ -35,7 +42,7 @@ namespace Actors
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag(tag))
+            if (_destroyed || collision.gameObject.CompareTag(tag))
                 return;
             
             if (!collision.gameObject.TryGetComponent(out Entity entity))
@@ -46,7 +53,8 @@ namespace Actors
         
         private void OnDestroy()
         {
-            Destroyed?.Invoke(gameObject);
+            if (!_destroyed)
+                Destroyed?.Invoke(gameObject);
         }
     }
 }

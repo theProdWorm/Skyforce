@@ -5,14 +5,16 @@ namespace Game
 {
     public class ScoreCounter : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _tmp;
+        [SerializeField] private TextMeshProUGUI _textMeshPro;
+
+        [SerializeField] private string _text;
         
         private int _score;
         
         public void AddScore(int score)
         {
             _score += score;
-            _tmp.text = $"SCORE: {_score}";
+            _textMeshPro.text = $"{_text}: {_score}";
         }
     }
 }

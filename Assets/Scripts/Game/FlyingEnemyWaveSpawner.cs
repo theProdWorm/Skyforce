@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Actors;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,9 +18,14 @@ namespace Game
         private float _spawnTimer;
         private bool _spawning;
 
+        private int _numEnemiesToSpawn;
+        private int _numDestroyedEnemies;
+
         public void StartSpawning()
         {
             _spawning = true;
+            
+            _numEnemiesToSpawn = _objectsToSpawn.Count;
         }
         
         private void Update()
@@ -38,6 +44,13 @@ namespace Game
 
             var entity = splineFollower.GetComponent<Entity>();
             EnemySpawned?.Invoke(entity);
+            entity.Destroyed.AddListener(e =>
+            {
+                _numDestroyedEnemies++;
+                
+                if (_numDestroyedEnemies == _numEnemiesToSpawn)
+                    Destroy(gameObject);
+            });
             
             _objectsToSpawn.RemoveAt(0);
             _spawnTimer = _spawnDelay;

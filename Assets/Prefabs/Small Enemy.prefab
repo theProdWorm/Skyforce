@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7050469451858329206}
   - component: {fileID: 1483862855296220411}
   - component: {fileID: 1318704637517580112}
+  - component: {fileID: -3119625286035386738}
   - component: {fileID: -852347329302852299}
   - component: {fileID: 4089163463257233440}
   m_Layer: 0
@@ -33,7 +34,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9128635547959787128}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7050469451858329206
@@ -103,25 +105,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29344047183e4310856aba5776c4fa1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  Died:
+  DamageTaken:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: -3119625286035386738}
+        m_TargetAssemblyTypeName: Helpers.SpriteManipulator, Assembly-CSharp
+        m_MethodName: TintRed
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.15
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  DiedFromDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7448745922411123388}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: DetachChildren
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _maxHealth: 1
+      - m_Target: {fileID: 8750964543198413486}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Destroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxHealth: 3
   _contactDamage: 1
 --- !u!114 &1318704637517580112
 MonoBehaviour:
@@ -137,6 +166,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _path: {fileID: 0}
   _speed: 8
+--- !u!114 &-3119625286035386738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652280698038412381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2d32536fd044443a93e917886ebf43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _redTint: {r: 1, g: 0.2783019, b: 0.2783019, a: 1}
+  _spriteRenderer: {fileID: 7050469451858329206}
 --- !u!50 &-852347329302852299
 Rigidbody2D:
   serializedVersion: 5
@@ -200,3 +243,91 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!1001 &2131327183861780125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7448745922411123388}
+    m_Modifications:
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316218217938220272, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_Name
+      value: Explosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8316218217938220272, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8979468127231958838}
+  m_SourcePrefab: {fileID: 100100000, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+--- !u!1 &7996944471174543981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8316218217938220272, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+  m_PrefabInstance: {fileID: 2131327183861780125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8979468127231958838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996944471174543981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f32a7c7753c82040ac09d65cedf7c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 8750964543198413486}
+--- !u!198 &8750964543198413486 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7269466392260660275, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+  m_PrefabInstance: {fileID: 2131327183861780125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9128635547959787128 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7150752359051849957, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+  m_PrefabInstance: {fileID: 2131327183861780125}
+  m_PrefabAsset: {fileID: 0}
