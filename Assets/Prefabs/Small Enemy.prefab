@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3119625286035386738}
   - component: {fileID: -852347329302852299}
   - component: {fileID: 4089163463257233440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Small Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -147,9 +147,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Destroyed:
-    m_PersistentCalls:
-      m_Calls: []
   _maxHealth: 3
   _contactDamage: 1
 --- !u!114 &1318704637517580112
@@ -294,6 +291,10 @@ PrefabInstance:
     - target: {fileID: 8316218217938220272, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316218217938220272, guid: 995f2af33c0ac6041a6c1285f2678c2e, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

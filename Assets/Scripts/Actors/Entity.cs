@@ -7,7 +7,6 @@ namespace Actors
     {
         public UnityEvent<float> DamageTaken;
         public UnityEvent<GameObject> DiedFromDamage;
-        public UnityEvent<GameObject> Destroyed;
     
         [SerializeField] private float _maxHealth = 1f;
 
@@ -21,12 +20,12 @@ namespace Actors
         {
             _currentHealth = _maxHealth;
             
-            Destroyed.AddListener(_ => _destroyed = true);
+            DiedFromDamage.AddListener(_ => _destroyed = true);
         }
 
         public void TakeDamage(float damage)
         {
-            if (damage <= 0)
+            if (damage <= 0 || _destroyed)
                 return;
             
             _currentHealth -= damage;
@@ -37,7 +36,6 @@ namespace Actors
                 return;
             
             DiedFromDamage?.Invoke(gameObject);
-            Destroyed?.Invoke(gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -49,12 +47,6 @@ namespace Actors
                 return;
         
             entity.TakeDamage(_contactDamage);
-        }
-        
-        private void OnDestroy()
-        {
-            if (!_destroyed)
-                Destroyed?.Invoke(gameObject);
         }
     }
 }

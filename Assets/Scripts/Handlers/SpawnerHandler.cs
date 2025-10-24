@@ -9,7 +9,6 @@ namespace Handlers
     public class SpawnerHandler : MonoBehaviour
     {
         [SerializeField] public UnityEvent<GameObject> EnemyDiedFromDamage;
-        [SerializeField] public UnityEvent<GameObject> EnemyDestroyed;
 
         private void Start()
         {
@@ -24,7 +23,6 @@ namespace Handlers
         private void OnEnemySpawned(Entity enemy)
         {
             enemy.DiedFromDamage.AddListener(EnemyDiedFromDamage.Invoke);
-            enemy.Destroyed.AddListener(EnemyDestroyed.Invoke);
         }
     }
 }

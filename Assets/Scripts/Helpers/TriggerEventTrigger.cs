@@ -8,6 +8,9 @@ namespace Helpers
     {
         [SerializeField] public UnityEvent<GameObject> TriggerEntered;
         [SerializeField] public UnityEvent<GameObject> TriggerExited;
+        
+        [SerializeField] private bool _destroySelfOnEnter;
+        [SerializeField] private bool _destroySelfOnExit;
 
         [Tooltip("If empty, all tags are allowed")]
         [SerializeField] private List<string> _allowedTags;
@@ -18,6 +21,9 @@ namespace Helpers
                 return;
                 
             TriggerEntered?.Invoke(otherCollider.gameObject);
+            
+            if (_destroySelfOnEnter)
+                Destroy(gameObject);
         }
 
         private void OnTriggerExit2D(Collider2D otherCollider)
@@ -26,6 +32,9 @@ namespace Helpers
                 return;
             
             TriggerExited?.Invoke(otherCollider.gameObject);
+            
+            if (_destroySelfOnExit)
+                Destroy(gameObject);
         }
     }
 }
