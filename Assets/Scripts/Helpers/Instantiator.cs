@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Helpers
 {
     public class Instantiator : MonoBehaviour
     {
+        [SerializeField] public UnityEvent<GameObject> Instantiated;
+        
         [SerializeField] private GameObject _prefab;
         [SerializeField] private string     _parentName;
         
@@ -11,7 +14,8 @@ namespace Helpers
         {
             var parent = GameObject.Find(_parentName).transform;
             
-            Instantiate(_prefab, parent);
+            var instance = Instantiate(_prefab, parent);
+            Instantiated?.Invoke(instance);
         }
     }
 }

@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 9110547298525361516}
   - component: {fileID: 1150228867288949628}
   m_Layer: 6
-  m_Name: Loop -L
+  m_Name: Path 1 -L
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

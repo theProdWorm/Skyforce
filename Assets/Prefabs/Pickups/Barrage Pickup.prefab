@@ -12,9 +12,13 @@ PrefabInstance:
       propertyPath: _prefab
       value: 
       objectReference: {fileID: 6704482183523712759, guid: 8886ea0a21357ce4e9db2761654d41b9, type: 3}
+    - target: {fileID: 2199814908164636615, guid: 52bfb0e32ea19da43a0cc26f4a0c0712, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4610922602482007144, guid: b7c4ee3e232277448bce602c0b6def13, type: 3}
     - target: {fileID: 3113446190891259940, guid: 52bfb0e32ea19da43a0cc26f4a0c0712, type: 3}
       propertyPath: m_Name
-      value: Laser Pickup
+      value: Barrage Pickup
       objectReference: {fileID: 0}
     - target: {fileID: 4231273931074575160, guid: 52bfb0e32ea19da43a0cc26f4a0c0712, type: 3}
       propertyPath: m_LocalPosition.x

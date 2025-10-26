@@ -30,7 +30,7 @@ namespace Actors
         
             float t = Mathf.Clamp01(_elapsedTime / _timeToReach);
             transform.localPosition = _path.EvaluatePosition(t);
-            transform.right = -_path.EvaluateTangent(t);
+            transform.up = _path.EvaluateTangent(t);
         }
     }
 }

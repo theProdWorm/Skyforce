@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Default Weapon
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 92351989107444494, guid: c77ec0da6e0abc5498ef8127c0a34ba0, type: 3}
-  ShotsPerSecond: 15
+  ShotsPerSecond: 12
   BulletSpeed: 24
   Accuracy: 95
   Damage: 1

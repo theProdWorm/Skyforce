@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lootItems:
   - Prefab: {fileID: 0}
-    Weight: 2
-  - Prefab: {fileID: 121030962213084133, guid: aaa632ed45f9b544c846f3bbd311a1b6, type: 3}
-    Weight: 2
+    Weight: 20
   - Prefab: {fileID: 3113446190891259940, guid: 52bfb0e32ea19da43a0cc26f4a0c0712, type: 3}
     Weight: 1
   - Prefab: {fileID: 3502449159922790748, guid: c6ac3c23d46e1194794b8dd56c84ef32, type: 3}

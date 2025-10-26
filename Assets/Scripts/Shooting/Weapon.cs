@@ -6,10 +6,9 @@ namespace Shooting
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private WeaponStats _stats;
-    
-        [SerializeField] private bool _syncBarrels;
+        [SerializeField] private Transform _barrelsRoot;
 
-        private readonly List<Transform> _barrels = new();
+        private readonly Dictionary<int, List<Transform>> _barrels = new();
         
         private bool _shooting;
         private float _timer;
@@ -19,7 +18,20 @@ namespace Shooting
 
         private void Start()
         {
-            _barrels.AddRange(GetComponentsInChildren<Transform>());
+            var barrels = _barrelsRoot.GetComponentsInChildren<Transform>();
+            
+            foreach (var barrel in barrels)
+            {
+                if (barrel == _barrelsRoot)
+                    continue;
+                
+                int index = int.Parse(barrel.name) - 1;
+                
+                if (!_barrels.ContainsKey(index))
+                    _barrels.Add(index, new List<Transform>());
+                
+                _barrels[index].Add(barrel);
+            }
         }
         
         private void Update()
@@ -30,18 +42,12 @@ namespace Shooting
             {
                 _timer = 1 / _stats.ShotsPerSecond;
 
-                if (_syncBarrels)
-                {
-                    foreach (var barrel in _barrels)
-                        Shoot(barrel);
-                }
-                else
-                {
-                    var barrel = _barrels[_barrelIndex];
+                var barrels = _barrels[_barrelIndex];
+                
+                foreach (var barrel in barrels)
                     Shoot(barrel);
-                    
-                    _barrelIndex = (_barrelIndex + 1) % _barrels.Count;
-                }
+
+                _barrelIndex = (_barrelIndex + 1) % _barrels.Count;
             }
         }
         
