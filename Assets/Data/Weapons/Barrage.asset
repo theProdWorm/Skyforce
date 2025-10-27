@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79cad05afff64fa5b58989d3225cb590, type: 3}
   m_Name: Barrage
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 92351989107444494, guid: c77ec0da6e0abc5498ef8127c0a34ba0, type: 3}
+  BulletPrefab: {fileID: 92351989107444494, guid: 5b687532b1cef0646b4c98a48b6ddc7c, type: 3}
   ShotsPerSecond: 20
   BulletSpeed: 24
   Accuracy: 100
