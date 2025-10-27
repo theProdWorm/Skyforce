@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Helpers
+namespace Helpers.Interpreters
 {
     public class HoldInputListener : MonoBehaviour
     {

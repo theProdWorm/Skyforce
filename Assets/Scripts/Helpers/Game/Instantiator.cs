@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Helpers
+namespace Helpers.Game
 {
     public class Instantiator : MonoBehaviour
     {

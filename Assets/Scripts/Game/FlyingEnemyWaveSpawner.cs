@@ -18,9 +18,11 @@ namespace Game
         private float _spawnTimer;
         private bool _spawning;
 
-        public void StartSpawning()
+        private int _totalObjects;
+
+        private void Awake()
         {
-            _spawning = true;
+            _totalObjects = _objectsToSpawn.Count;
         }
         
         private void Update()
@@ -46,5 +48,12 @@ namespace Game
             if (_objectsToSpawn.Count == 0)
                 _spawning = false;
         }
+        
+        public void StartSpawning()
+        {
+            _spawning = true;
+        }
+        
+        public int GetEnemyCount() => _totalObjects;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Helpers
+namespace Helpers.Game
 {
     public class SpriteManipulator : MonoBehaviour
     {
