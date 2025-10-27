@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4089163463257233440}
   m_Layer: 8
   m_Name: Small Enemy
-  m_TagString: Undefined
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
