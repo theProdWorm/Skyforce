@@ -28,7 +28,7 @@ namespace Helpers.Game
             if (_secondTimer >= 1)
             {
                 SecondTicked?.Invoke(_lifetime - _timeLived);
-                _secondTimer = 0;
+                _secondTimer -= 1;
             }
         }
     }
