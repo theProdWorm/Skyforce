@@ -36,7 +36,9 @@ namespace Game
             if (_spawnTimer > 0)
                 return;
 
-            var splineFollower = Instantiate(_objectsToSpawn[0], transform.position, Quaternion.identity);
+            var spawnPos = _path.EvaluatePosition(0);
+            
+            var splineFollower = Instantiate(_objectsToSpawn[0], spawnPos, Quaternion.identity);
             splineFollower.Initialize(_path);
 
             var entity = splineFollower.GetComponent<Entity>();

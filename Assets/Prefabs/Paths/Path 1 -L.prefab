@@ -346,6 +346,8 @@ MonoBehaviour:
   TriggerExited:
     m_PersistentCalls:
       m_Calls: []
+  _destroySelfOnEnter: 0
+  _destroySelfOnExit: 0
   _allowedTags: []
 --- !u!50 &1150228867288949628
 Rigidbody2D:

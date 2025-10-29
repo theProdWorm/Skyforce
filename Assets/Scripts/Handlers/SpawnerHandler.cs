@@ -9,7 +9,8 @@ namespace Handlers
     public class SpawnerHandler : MonoBehaviour
     {
         [SerializeField] public UnityEvent<GameObject> EnemyDiedFromDamage;
-        [SerializeField] public UnityEvent<int> EnemyCountCalculated;
+        [SerializeField] public UnityEvent<GameObject> EnemyReachedEnd;
+        [SerializeField] public UnityEvent<int>        EnemyCountCalculated;
 
         private void Start()
         {
@@ -24,6 +25,9 @@ namespace Handlers
         private void OnEnemySpawned(Entity enemy)
         {
             enemy.DiedFromDamage.AddListener(EnemyDiedFromDamage.Invoke);
+
+            var splineFollower = enemy.GetComponent<SplineFollower>();
+            splineFollower.ReachedEnd.AddListener(EnemyReachedEnd.Invoke);
         }
 
         public void CalculateTotalEnemyCount()

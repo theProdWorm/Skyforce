@@ -14,10 +14,13 @@ namespace Helpers.Events
 
         [Tooltip("If empty, all tags are allowed")]
         [SerializeField] private List<string> _allowedTags;
+        [SerializeField] private List<string> _disallowedTags;
 
         private void OnTriggerEnter2D(Collider2D otherCollider)
         {
-            if (_allowedTags.Count > 0 && !_allowedTags.Contains(otherCollider.gameObject.tag))
+            if (_allowedTags.Count > 0 && !_allowedTags.Contains(otherCollider.tag))
+                return;
+            if (_disallowedTags.Contains(otherCollider.tag))
                 return;
                 
             TriggerEntered?.Invoke(otherCollider.gameObject);
@@ -28,7 +31,9 @@ namespace Helpers.Events
 
         private void OnTriggerExit2D(Collider2D otherCollider)
         {
-            if (_allowedTags.Count > 0 && !_allowedTags.Contains(otherCollider.gameObject.tag))
+            if (_allowedTags.Count > 0 && !_allowedTags.Contains(otherCollider.tag))
+                return;
+            if (_disallowedTags.Contains(otherCollider.tag))
                 return;
             
             TriggerExited?.Invoke(otherCollider.gameObject);

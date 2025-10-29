@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Splines;
 
 namespace Actors
 {
     public class SplineFollower : MonoBehaviour
     {
+        [SerializeField] public UnityEvent<GameObject> ReachedEnd;
+        
         [SerializeField] private SplineContainer _path;
 
         [SerializeField] private float _speed;
@@ -31,6 +34,9 @@ namespace Actors
             float t = Mathf.Clamp01(_elapsedTime / _timeToReach);
             transform.localPosition = _path.EvaluatePosition(t);
             transform.up = _path.EvaluateTangent(t);
+            
+            if (t >= 1)
+                ReachedEnd?.Invoke(gameObject);
         }
     }
 }

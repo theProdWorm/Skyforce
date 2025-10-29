@@ -1,27 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace Helpers
+namespace Helpers.Game
 {
     public class SingletonByName : MonoBehaviour
     {
-        private static SingletonByName _instance;
+        private static readonly Dictionary<string, SingletonByName> _instance = new();
         
         [SerializeField] private bool _favorSelf;
         
         private void Awake()
         {
-            if (!_instance)
+            if (!_instance.ContainsKey(name))
             {
-                _instance = this;
+                _instance[name] = this;
                 DontDestroyOnLoad(gameObject);
             }
             else
             {
                 if (_favorSelf)
                 {
-                    Destroy(_instance.gameObject);
+                    Destroy(_instance[name].gameObject);
                     
-                    _instance = this;
+                    _instance[name] = this;
                     DontDestroyOnLoad(gameObject);
                 }
                 else

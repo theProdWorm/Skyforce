@@ -7,6 +7,8 @@ namespace Shooting
 {
     public class Shooter : MonoBehaviour
     {
+        [SerializeField] private GameObject _weaponContainer;
+        
         private Weapon _weapon;
 
         private int _weaponCount;
@@ -15,8 +17,7 @@ namespace Shooting
         
         private void Start()
         {
-            var child = transform.GetChild(0);
-            var weapon = child.GetComponent<Weapon>();
+            var weapon = _weaponContainer.GetComponentInChildren<Weapon>();
 
             _weapon = weapon;
             _weapon.tag = tag;
@@ -24,12 +25,12 @@ namespace Shooting
         
         private void Update()
         {
-            var childCount = transform.childCount;
+            var childCount = _weaponContainer.transform.childCount;
             
             if (_weaponCount == childCount)
                 return;
             
-            var targetWeaponTransform = transform.GetChild(childCount - 1);
+            var targetWeaponTransform = _weaponContainer.transform.GetChild(childCount - 1);
             SwitchWeapon(targetWeaponTransform);
             
             _weaponCount = childCount;
@@ -37,7 +38,7 @@ namespace Shooting
             if (childCount <= 2)
                 return;
 
-            Destroy(transform.GetChild(1).gameObject);
+            Destroy(_weaponContainer.transform.GetChild(1).gameObject);
         }
 
         private void SwitchWeapon(Transform child)

@@ -105,6 +105,7 @@ MonoBehaviour:
   _destroySelfOnExit: 0
   _allowedTags:
   - Player
+  _disallowedTags: []
 --- !u!114 &-60298049931717694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe1dd8d68c24cf48f7e71d9dd485625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Instantiated:
+    m_PersistentCalls:
+      m_Calls: []
   _prefab: {fileID: 6704482183523712759, guid: 36ac7a909f26dea4f8c448e397580efb, type: 3}
-  _parentName: Player
+  _parentName: ~Weapons
 --- !u!212 &2199814908164636615
 SpriteRenderer:
   m_ObjectHideFlags: 0
